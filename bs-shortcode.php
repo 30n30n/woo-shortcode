@@ -5,6 +5,7 @@
  * Author: Sina Arzany
  * Author URI: https://arzany.com
  * License: MIT
+ * Version: 1.0
  */
 
 /*Full list of shortcodes
@@ -51,8 +52,11 @@ function woo_zip( $atts ) {
 }
 function woo_country( $atts ) {
     // The country/state
-    $x = get_option( 'woocommerce_default_country' );
-    $z = code_to_country ($x);
+    $store_raw_country = get_option( 'woocommerce_default_country' );
+    $split_country = explode( ":", $store_raw_country );
+    $store_country = $split_country[0];
+    $store_state   = $split_country[1];
+    $z = code_to_country ($store_country);
   
     return "{$z}";
 }
